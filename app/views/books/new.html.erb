@@ -6,6 +6,9 @@
 	
   <h4>Opinion</h4>
   <%= f.text_area :opinion %>
+  
+    <h4>Image</h4>
+  <%= f.file_field :image, accept: "image/*" %>
 	
   <%= f.submit 'Create Book' %>
 <% end %>

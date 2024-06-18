@@ -12,7 +12,5 @@ Rails.application.routes.draw do
   get 'homes/top' => 'homes#top'
   get 'homes/about' => "homes#about", as: 'about'
   
-  
-  
 end
 
