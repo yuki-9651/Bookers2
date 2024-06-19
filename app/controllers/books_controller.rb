@@ -9,14 +9,14 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     
     if @book.save
-      redirect_to books_path, notice: 'Book was successfully created.'
+      redirect_to @book, notice: 'Book was successfully created.'
     else
       render :new
     end
   end
 
   def index
-    @book = Book.all
+    @books = Book.all
     @book = Book.new
   end
 
@@ -31,7 +31,7 @@ class BooksController < ApplicationController
   private
   
   def book_params
-    params.require(:book).permit(:title, :opinion, :image)  
+    params.require(:book).permit(:title, :body, :image)  
   end
     
 end
