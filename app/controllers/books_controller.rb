@@ -21,11 +21,25 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
+    if @book.nil?
+      flash[:alert] = "Book not found."
+      redirect_to books_path
+    end
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
+    if @book.nil?
+      flash[:alert] = "Book not found."
+      redirect_to books_path
+    end
+  end
+  
+  def destroy
+    book =Book.find(params[:id])
+    book.destroy
+    redirect_to book_path
   end
   
   private
