@@ -1,2 +1,83 @@
-<h1>hfjdhjkdc</h1>
-<p>Fishgfjrdsgjsjgfdjsgfmjsgfdn appkhdgk</p>
+<div class="container">  
+  <div class="row">  
+   <div class="col-md-3">    
+     <h2>User info</h2>
+
+        <%= form_with model: @user, url:'/users' do |f| %>
+        
+          <% if @user.image.attached? %>
+            <%= image_tag @user.image, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'default-image', size: "100x100" %>
+          <% end %>
+          
+        <% end %>
+        
+      <table class = "table">
+        <tbody>
+          <tr></tr>
+          <tr>
+            <th>name</th>
+            <th>
+               <%= @user.name %>
+            </th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th>
+            　<%= @user.introduction %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <h2>New book</h2>
+
+        <%= form_with model: Book.new do |f| %>
+          <h4>Title</h4>
+          <%= f.text_field :title %>
+        	
+          <h4>Opinion</h4>
+          <%= f.text_area :body %>
+        	
+          <%= f.submit 'Create Book' %>
+        <% end %>
+  </div>
+  
+  <div class="col-md-8 offset-md-1"> 
+     <h2>Users</h2>
+      <table class="table table-striped">
+        
+        <thead>
+         <tr> 
+          <th>Title</th>
+          <th>Opinion</th>
+          <th colspan="3"></th>
+         </tr> 
+        </thead>
+        
+        <tbody>
+            <% @user.book.each do |book| %>
+              <tr>
+                <td>
+                  <% if @user %>
+                    <%= image_tag @user.get_profile_image(100,100) %>
+                  <% else %>
+                    <%= image_tag 'default-image', size: "100x100" %>
+                  <% end %>
+                </td>
+                
+                <td><%= link_to book.title, book_path(book) %></td>
+                
+                
+                <td><%= book.body %></td>
+                
+              </tr>
+             <% end %>
+          </tbody>
+          
+           
+        </table>
+      </div> 
+    
+ </div>
+</div>

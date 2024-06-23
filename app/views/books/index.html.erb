@@ -28,12 +28,12 @@
                   <%= image_tag 'default-image', size: "100x100" %>
                 <% end %>
               </td>
-              <th>
-              　 <%= link_to book.title,user_path %>
-              </th>
-              <th>
-              　 <%= book.body %>
-              </th>
+              <td>
+               <%= link_to book.title, book_path(book) %>
+              </td>
+              <td>
+               <%= book.body %>
+              </td>
               
            </tr>
          <% end %>
