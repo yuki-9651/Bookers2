@@ -1,28 +1,24 @@
 <div class="container">  
  <div class="row">  
     <div class="col-md-3">
-     <%= render 'books/make' %>
+     <%= render 'books/make',user: @book.user,book: @apple %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table table-striped">
         
         <tbody>
-  
            
               <th> 
-                <%= form_with model: @user, local: true, multipart: true do |f| %>
                 
-                  <% if @user.profile_image.attached? %>
-                    <%= image_tag @user.profile_image.variant(resize_to_limit: [100, 100]).processed %>
+                  <% if @book.user.profile_image.attached? %>
+                    <%= image_tag @book.user.profile_image.variant(resize_to_limit: [100, 100]).processed %>
                   <% else %>
                     <%= image_tag 'default-image', size: "100x100" %>
                     <div>
                   　    <%= link_to @book.user.name,user_path(@book) %>
                   　</div>
                   <% end %>
-                  
-                <% end %>
               </th>
            
               <th>
@@ -34,13 +30,11 @@
               </th>
               
               <th>
-                
+                <a class = "btn btn-sm btn-success edit_book">
                   <% if @book.user == current_user %>
-                    <a class = "btn btn-sm btn-success edit_book">
                      <%= link_to "Edit", edit_book_path(@book) %>
-                    </a>
                   <% end %>
-                
+                 </a>
               </th>
               
               <th>

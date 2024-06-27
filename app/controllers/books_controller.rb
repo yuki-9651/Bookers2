@@ -8,13 +8,13 @@ class BooksController < ApplicationController
   
   def create
     @book = Book.new(book_params)
-    @books = Book.all
     @book.user_id = current_user.id
     
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to @book
+      redirect_to books_path
     else
+      @books = Book.all
       render :index
     end
     
@@ -24,11 +24,11 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
-    @user = User.new
+    @user = current_user
   end
 
   def show
-    @user = User.new
+    @apple = Book.new
     @book = Book.find_by(id: params[:id])
     if @book.nil?
       flash[:alert] = "Book not found."
@@ -48,8 +48,8 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     
     if @book.update(book_params)
-      flash[:notice] = "You have updated book successfully."
-      redirect_to @book 
+       flash[:notice] = "You have updated book successfully."
+       redirect_to @book 
     else
       render :edit
     end
@@ -65,7 +65,7 @@ class BooksController < ApplicationController
   private
   
   def book_params
-    params.require(:book).permit(:title, :body, :profile_image)  
+    params.require(:book).permit(:title, :body)  
   end
   
   def is_matching_edit_book 

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   
   get 'homes/top' => 'homes#top'
-  get 'homes/about' => "homes#about", as: 'about'
+  get 'home/about' => "homes#about", as: 'about'
   
 end
 
