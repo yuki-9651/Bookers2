@@ -9,9 +9,11 @@
         <tbody>
             
               <% if @user.profile_image.attached? %>
-                <%= image_tag user.profile_image.variant(resize_to_limit: [100, 100]) %>
+               
+                  <%= image_tag user.profile_image.variant(resize_to_limit: [100, 100]) %>
               <% else %>
-                <%= image_tag 'default-image', size: "100x100" %>
+                
+                  <%= image_tag 'default-image', size: "100x100" %>
               <% end %>
               
         
@@ -25,7 +27,7 @@
           <tr>
             <th>introduction</th>
             <th>
-            　<%= current_user.introduction %>
+              <%= current_user.introduction %>
             </th>
           </tr>
         </tbody>
@@ -70,20 +72,22 @@
               <tr>
                 
                 <td>
-                  <% if user %>
-                    <%= image_tag user.get_profile_image(100,100) %>
-                  <% else %>
-                    <%= image_tag 'default-image', size: "100x100" %>
-                  <% end %>
+                    <% if user %>
+                      
+                        <%= image_tag user.get_profile_image(100,100) %>
+                    <% else %>
+                      
+                        <%= image_tag 'default-image', size: "100x100" %>
+                    <% end %>
                 </td>
                 
                 <td>
                  <%= user.name %>
                 </td>
                 
-                <th>
-                　 <%= link_to "Show", user_path(user) %>
-                </th>
+                <td>
+                   <%= link_to "Show", user_path(user) %>
+                </td>
                 
               </tr>
             <% end %>
