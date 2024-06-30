@@ -39,7 +39,7 @@
               <i class="fa-solid fa-user-gear"></i>
             <% end %>
           <% else %>
-            <%= link_to books_path, class: "btn btn-outline-secondary btn-block" do %>
+            <%= link_to edit_user_path(@book.user), class: "btn btn-outline-secondary btn-block" do %>
               <i class="fa-solid fa-user-gear"></i>
             <% end %>
           <% end %>
@@ -68,18 +68,36 @@
         <tbody>
            
               <th> 
+                <% if @book.user == current_user %>
                 
                   <% if @book.user.profile_image.attached? %>
                     <%= image_tag @book.user.profile_image.variant(resize_to_limit: [100, 100]).processed %>
                     <div>
-                  　    <%= link_to @book.user.name,user_path(@book.user) %>
+                  　    <%= link_to @book.user.name, user_path(@book.user) %>
                   　</div>
                   <% else %>
                     <%= image_tag 'default-image', size: "100x100" %>
                     <div>
-                  　    <%= link_to @book.user.name,user_path(@book.user) %>
+                  　    <%= link_to @book.user.name, user_path(@book.user) %>
                   　</div>
                   <% end %>
+                  
+                <% else %>
+                
+                　<% if @book.user.profile_image.attached? %>
+                    <%= image_tag @book.user.profile_image.variant(resize_to_limit: [100, 100]).processed %>
+                    <div>
+                  　    <%= link_to @book.user.name, user_path(@book.user) %>
+                  　</div>
+                  <% else %>
+                    <%= image_tag 'default-image', size: "100x100" %>
+                    <div>
+                  　    <%= link_to @book.user.name, user_path(@book.user) %>
+                  　</div>
+                  <% end %>
+                  
+                  
+                <% end %>  
               </th>
            
               <th>
